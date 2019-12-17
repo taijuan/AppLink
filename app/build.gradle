@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.zuiweng.applink"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    /**
+     * 密钥库类型: PKCS12
+     * 密钥库提供方: SUN
+     *
+     * 您的密钥库包含 1 个条目
+     *
+     * 别名: applink
+     * 创建日期: 2019-12-17
+     * 条目类型: PrivateKeyEntry
+     * 证书链长度: 1
+     * 证书[1]:
+     * 所有者: CN=AppLink, OU=TaiJuanZheng, O=TaiJuanZheng, L=ChengDu, ST=SiChuan, C=x86
+     * 发布者: CN=AppLink, OU=TaiJuanZheng, O=TaiJuanZheng, L=ChengDu, ST=SiChuan, C=x86
+     * 序列号: 4fe579d2
+     * 有效期为 Tue Dec 17 16:25:42 CST 2019 至 Sat Dec 10 16:25:42 CST 2044
+     * 证书指纹:
+     *          MD5:  69:D6:82:83:51:F7:A6:5F:FD:21:1D:E3:D5:9A:21:70
+     *          SHA1: 8E:F3:31:C2:C7:AE:0A:8E:B6:17:C3:92:1A:76:E9:A6:26:7F:CF:F3
+     *          SHA256: F2:DD:D2:70:21:5E:BD:CE:F8:6B:0F:2F:29:24:B0:C7:BD:3C:E2:E3:5B:19:AD:79:C2:74:B3:32:30:8D:E2:39
+     * 签名算法名称: SHA256withRSA
+     * 主体公共密钥算法: 2048 位 RSA 密钥
+     * 版本: 3
+     *
+     * 扩展:
+     *
+     * #1: ObjectId: 2.5.29.14 Criticality=false
+     * SubjectKeyIdentifier [
+     * KeyIdentifier [
+     * 0000: 66 CE 05 19 71 19 15 EC   6C 22 B1 21 D5 B8 E5 5C  f...q...l".!...\
+     * 0010: 23 A4 02 22                                        #.."
+     * ]
+     * ]
+     *
+     *
+     *
+     * *******************************************
+     * *******************************************
+     */
+    signingConfigs {
+        debug {}
+        release {
+            storeFile file("applink.jks")
+            storePassword "123456"
+            keyAlias "applink"
+            keyPassword "123456"
+        }
+    }
+    buildTypes {
+        debug{
+            signingConfig signingConfigs.release
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.zuiweng.applink",
+      "sha256_cert_fingerprints": [
+        "F2:DD:D2:70:21:5E:BD:CE:F8:6B:0F:2F:29:24:B0:C7:BD:3C:E2:E3:5B:19:AD:79:C2:74:B3:32:30:8D:E2:39"
+      ]
+    }
+  }
+]
